@@ -5,7 +5,7 @@ from kernel.interfaces.interfaces import InterfaceManager
 """
 Is an list of characters used by all the interface. 
 """
-NUMBER_USED_CHARACTERS_BY_INTERFACE = {}
+NUMBER_SHORT_LINK_GENERATED = {}
 
 class DefaultRuleClass(InterfaceManager):
     """
@@ -30,33 +30,41 @@ class DefaultRuleClass(InterfaceManager):
     def __init__(self) -> None:
         super().__init__()
 
-    def load_number_used_characters_by_interface(self):
+    def load_number_short_link_generated(self):
         """
         Load the number of used characters by interface.
         """
-        global NUMBER_USED_CHARACTERS_BY_INTERFACE
+        global NUMBER_SHORT_LINK_GENERATED
         from shortlink.models import ShortLink
-        if self.label not in NUMBER_USED_CHARACTERS_BY_INTERFACE:
-            NUMBER_USED_CHARACTERS_BY_INTERFACE[self.label] = ShortLink.objects.filter(interface=self.label).count()
-        return NUMBER_USED_CHARACTERS_BY_INTERFACE[self.label]
+        if self.label not in NUMBER_SHORT_LINK_GENERATED:
+            NUMBER_SHORT_LINK_GENERATED[self.label] = ShortLink.objects.filter(interface=self.label).count()
+        return NUMBER_SHORT_LINK_GENERATED[self.label]
     
-    def increment_number_used_characters_by_interface(self):
+    def increment_number_short_link_generated(self):
         """
         Increment the number of used characters by interface.
         """
-        global NUMBER_USED_CHARACTERS_BY_INTERFACE
-        if self.label not in NUMBER_USED_CHARACTERS_BY_INTERFACE:
-            self.load_number_used_characters_by_interface()
-        NUMBER_USED_CHARACTERS_BY_INTERFACE[self.label] += 1
-        return NUMBER_USED_CHARACTERS_BY_INTERFACE[self.label]
+        global NUMBER_SHORT_LINK_GENERATED
+        if self.label not in NUMBER_SHORT_LINK_GENERATED:
+            self.load_number_short_link_generated()
+        NUMBER_SHORT_LINK_GENERATED[self.label] += 1
+        return NUMBER_SHORT_LINK_GENERATED[self.label]
     
-    def get_number_used_characters_by_interface(self):
+    def get_number_short_link_generated(self):
         """
         Get the number of used characters by interface.
         """
-        if self.label not in NUMBER_USED_CHARACTERS_BY_INTERFACE:
-            return self.load_number_used_characters_by_interface()
-        return NUMBER_USED_CHARACTERS_BY_INTERFACE[self.label]
+        if self.label not in NUMBER_SHORT_LINK_GENERATED:
+            return self.load_number_short_link_generated()
+        return NUMBER_SHORT_LINK_GENERATED[self.label]
     
+    def shortlink_length_now(self):
+        """
+        Get the number of characters to generate the new short link.
+        """
+        used = self.get_number_short_link_generated()
+        characters_length = len(self.characters)
+        
 
+    
 SHORTCUT_RULESTACK.set_rule(DefaultRuleClass())

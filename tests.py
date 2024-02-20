@@ -1,3 +1,9 @@
 from django.test import TestCase
+from django.urls import reverse
 
-# Create your tests here.
+
+class ShortlinkTest(TestCase):
+    def test_shortlink(self):
+        """
+        Test the shortlink.
+        """
