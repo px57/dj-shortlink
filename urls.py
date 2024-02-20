@@ -7,8 +7,13 @@ from . import views
 
 urlpatterns = [
     path(
-        'signin/', 
-        views.signin, 
-        name=''
+        'create/', 
+        views.create, 
+        name='create'
+    ),
+    path(
+        '<str:path>', 
+        views.redirect, 
+        name='redirect'
     ),
 ]

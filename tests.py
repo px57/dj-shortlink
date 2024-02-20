@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class ShortlinkTest(TestCase):
-    def test_shortlink(self):
+    def test_generate(self):
         """
         Test the shortlink.
         """
