@@ -41,3 +41,7 @@ class GetForm(forms.Form):
         stack=SHORTCUT_RULESTACK,
         required=True
     )
+
+    _custom = forms.CharField(
+        required=False,
+    )
