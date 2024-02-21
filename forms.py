@@ -29,3 +29,15 @@ class RedirectForm(forms.Form):
     path = forms.CharField(
         required=True
     )
+
+class GetForm(forms.Form):
+    """Recept the new user info."""
+    class Meta:
+        fields = [
+            '_in'
+        ]
+
+    _in = InterfaceValidators(
+        stack=SHORTCUT_RULESTACK,
+        required=True
+    )

@@ -10,7 +10,7 @@ from shortlink import forms
 
 def create(request):
     """
-        @description: Create a shortlink.
+    Create a shortlink.
     """
     res = Response(request=request)
     form = forms.CreateForm(request.POST)
@@ -23,10 +23,26 @@ def create(request):
 
 def redirect(request, path):
     """
-        @description: Redirect to the url.
+    Redirect to the url.
     """
-    res = Response(request)
+    res  = Response(request)
     form = forms.RedirectForm(request.POST)
+    if not form.is_valid():
+        return res.form_error(form)
+    data = form.cleaned_data
+
+    print (data)
+    return res.success()
+
+def get(request):
+    """
+    Get the shortlink.
+
+    Args:
+        request: the request object.
+    """
+    res = Response(request=request)
+    form = forms.GetForm(request.POST)
     if not form.is_valid():
         return res.form_error(form)
     data = form.cleaned_data
