@@ -10,5 +10,5 @@ def redirect_shortlink(url: str, **kwargs) -> str:
         **save: Save the click -> load the link_manager.
     """
     from shortlink.models import Shortlink
-    from shortlink.rules.stack import SHORTCUT_RULESTACK
+    from shortlink.rules.stack import SHORTLINK_RULESTACK
 

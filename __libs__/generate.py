@@ -18,7 +18,7 @@ def generate_shortlink(_in, url: str) -> str:
         url: The url to shorten.
     """
     from shortlink.models import Shortlink
-    from shortlink.rules.stack import SHORTCUT_RULESTACK
+    from shortlink.rules.stack import SHORTLINK_RULESTACK
 
     _in.event_before_generate(url)
     dbShortlink = Shortlink(

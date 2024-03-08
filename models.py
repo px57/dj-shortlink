@@ -1,6 +1,6 @@
 from django.db import models
 from kernel.models.base_metadata_model import BaseMetadataModel
-from shortlink.rules.stack import SHORTCUT_RULESTACK
+from shortlink.rules.stack import SHORTLINK_RULESTACK
 
 class ShortLink(BaseMetadataModel):
     """
@@ -17,7 +17,7 @@ class ShortLink(BaseMetadataModel):
     interface = models.CharField(
         max_length=255, 
         default='DEFAULT', 
-        choices=SHORTCUT_RULESTACK.models_choices()
+        choices=SHORTLINK_RULESTACK.models_choices()
     )
 
     short_link = models.CharField(

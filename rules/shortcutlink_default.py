@@ -1,5 +1,5 @@
 
-from shortlink.rules.stack import SHORTCUT_RULESTACK
+from shortlink.rules.stack import SHORTLINK_RULESTACK
 from kernel.interfaces.interfaces import InterfaceManager
 
 """
@@ -28,6 +28,9 @@ class DefaultRuleClass(InterfaceManager):
     characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
     def __init__(self) -> None:
+        """
+        The constructor of the class.
+        """
         super().__init__()
 
     def load_number_short_link_generated(self):
@@ -64,7 +67,11 @@ class DefaultRuleClass(InterfaceManager):
         """
         used = self.get_number_short_link_generated()
         characters_length = len(self.characters)
-        
 
+    def viewcreate__get_url(self):
+        """
+        Get the url to create the short link.
+        """
+        return self.request.POST.get('url', None)
     
-SHORTCUT_RULESTACK.set_rule(DefaultRuleClass())
+SHORTLINK_RULESTACK.set_rule(DefaultRuleClass)

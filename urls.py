@@ -7,13 +7,13 @@ from . import views
 
 urlpatterns = [
     path(
-        'create/', 
-        views.create, 
+        'create/',
+        views.create,
         name='create'
     ),
     path(
-        '<str:path>', 
-        views.redirect, 
-        name='redirect'
+        'get/',
+        views.get,
+        name='get'
     ),
 ]

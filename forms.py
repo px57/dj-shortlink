@@ -1,20 +1,10 @@
 
-from shortlink.rules.stack import SHORTCUT_RULESTACK
+from shortlink.rules.stack import SHORTLINK_RULESTACK
 from kernel.interfaces.validators import InterfaceValidators
 from django import forms
 
 class CreateForm(forms.Form):
     """Recept the new user info."""
-    class Meta:
-        fields = [
-            '_in',
-        ]
-
-    _in = InterfaceValidators(
-        stack=SHORTCUT_RULESTACK,
-        required=True
-    )
-
     url = forms.URLField(
         required=True
     )
@@ -38,7 +28,7 @@ class GetForm(forms.Form):
         ]
 
     _in = InterfaceValidators(
-        stack=SHORTCUT_RULESTACK,
+        stack=SHORTLINK_RULESTACK,
         required=True
     )
 
