@@ -67,6 +67,7 @@ class DefaultRuleClass(InterfaceManager):
         """
         used = self.get_number_short_link_generated()
         characters_length = len(self.characters)
+        return used // characters_length + 1
 
     def viewcreate__get_url(self):
         """

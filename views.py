@@ -4,7 +4,7 @@ from kernel.http import Response
 from kernel.http import load_response
 from kernel.http.decorators import load_json
 
-from shortlink.__libs__.generate import generate_shortlink
+from shortlink.__libs__.generate import create_shortlink
 from shortlink.__libs__.redirect import redirect_shortlink
 
 from shortlink.rules.stack import SHORTLINK_RULESTACK
@@ -17,14 +17,19 @@ from shortlink import forms
     json=True,
     load_params=True
 )
-def create(request, res=None):
+def create_or_get(request, res=None):
     """
     Create a shortlink.
     """
     _in = res.get_interface()
+    url = _in.form.cleaned_data.get('url')
+    dbToken = create_shortlink(_in, url)
+    res.shortlink = dbToken.serialize(request)
     return res.success()
 
-@load_response(stack=SHORTLINK_RULESTACK)
+@load_response(
+    stack=SHORTLINK_RULESTACK,
+)
 def redirect(request, path, res=None):
     """
     Redirect to the url.

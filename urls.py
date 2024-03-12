@@ -7,9 +7,9 @@ from . import views
 
 urlpatterns = [
     path(
-        'create/',
-        views.create,
-        name='create'
+        'create_or_get/',
+        views.create_or_get,
+        name='create_or_get'
     ),
     path(
         'get/',

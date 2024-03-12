@@ -1,5 +1,8 @@
 from django.db import models
+from django.forms.models import model_to_dict
+
 from kernel.models.base_metadata_model import BaseMetadataModel
+
 from shortlink.rules.stack import SHORTLINK_RULESTACK
 
 class ShortLink(BaseMetadataModel):
@@ -37,3 +40,10 @@ class ShortLink(BaseMetadataModel):
 
     def __str__(self):
         return self.short_link
+
+    def serialize(self, request):
+        """
+        Serialize the shortlink.
+        """
+        serialize = model_to_dict(self)
+        return serialize
