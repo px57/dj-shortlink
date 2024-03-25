@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
-from kernel.http import Response
-from kernel.http import load_response
-from kernel.http.decorators import load_json
+from gpm.http import Response
+from gpm.http import load_response
+from gpm.http.decorators import load_json
 
 from shortlink.__libs__.generate import create_shortlink
 from shortlink.__libs__.redirect import redirect_shortlink

@@ -1,6 +1,6 @@
 
 from shortlink.rules.stack import SHORTLINK_RULESTACK
-from kernel.interfaces.validators import InterfaceValidators
+from gpm.interfaces.validators import InterfaceValidators
 from django import forms
 
 class CreateForm(forms.Form):

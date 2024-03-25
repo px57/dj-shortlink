@@ -1,6 +1,6 @@
 
 from shortlink.rules.stack import SHORTLINK_RULESTACK
-from kernel.interfaces.interfaces import InterfaceManager
+from gpm.interfaces.interfaces import InterfaceManager
 
 """
 Is an list of characters used by all the interface. 
